@@ -1,6 +1,6 @@
 import BentoCard from '@/components/BentoCard';
 import { ArrowUpRight, MapPin, GitCommit, Activity, Target, Mail } from 'lucide-react';
-import { LinkedinIcon, YoutubeIcon, InstagramIcon } from '@/components/icons';
+import { LinkedinIcon, YoutubeIcon, InstagramIcon, DiscordIcon } from '@/components/icons';
 import Image from 'next/image';
 import Link from 'next/link';
 import { getLatestGithubActivity } from '@/lib/services/github';
@@ -111,6 +111,9 @@ export default async function Home() {
             </Link>
             <Link href="https://www.instagram.com/bosanid13" target="_blank" className="w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-pink-500/20 hover:border-pink-500/50 hover:text-pink-500 text-slate-400 transition-all relative z-20" aria-label="Instagram">
               <InstagramIcon className="w-5 h-5" />
+            </Link>
+            <Link href="https://discord.gg/yX2zp2qk8T" target="_blank" className="w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-[#5865F2]/20 hover:border-[#5865F2]/50 hover:text-[#5865F2] text-slate-400 transition-all relative z-20" aria-label="Discord">
+              <DiscordIcon className="w-5 h-5" />
             </Link>
             <Link href="mailto:husnikusuma@envoyou.com" className="w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-emerald-500/20 hover:border-emerald-500/50 hover:text-emerald-500 text-slate-400 transition-all relative z-20" aria-label="Email">
               <Mail className="w-5 h-5" />
