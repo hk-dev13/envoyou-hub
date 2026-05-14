@@ -1,5 +1,5 @@
 import BentoCard from '@/components/BentoCard';
-import { ArrowUpRight, MapPin, Code2, GitCommit, Activity, Target } from 'lucide-react';
+import { ArrowUpRight, MapPin, GitCommit, Activity, Target } from 'lucide-react';
 import { LinkedinIcon, YoutubeIcon } from '@/components/icons';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -60,15 +60,18 @@ export default async function Home() {
         </BentoCard>
 
         {/* Discord / Steam Presence Card */}
-        <BentoCard className="p-6 flex flex-col justify-center relative overflow-hidden" delay={0.3} glowColor="rgba(34, 197, 94, 0.15)">
-          <div className="flex items-center gap-2 mb-3">
-            <div className="relative flex h-2 w-2">
-              {discordPresence?.status === 'online' && <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>}
-              <span className={`relative inline-flex rounded-full h-2 w-2 ${discordPresence?.status === 'online' ? 'bg-emerald-500' : 'bg-slate-500'}`}></span>
+        <BentoCard className="p-6 flex flex-col justify-center relative overflow-hidden group/discord" delay={0.3} glowColor="rgba(34, 197, 94, 0.15)">
+          <div className="flex items-center justify-between mb-3">
+            <div className="flex items-center gap-2">
+              <div className="relative flex h-2 w-2">
+                {discordPresence?.status === 'online' && <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>}
+                <span className={`relative inline-flex rounded-full h-2 w-2 ${discordPresence?.status === 'online' ? 'bg-emerald-500' : 'bg-slate-500'}`}></span>
+              </div>
+              <span className="font-semibold text-slate-400 text-sm tracking-wide uppercase">
+                {discordPresence?.activityType === 'playing' ? 'Currently Playing' : 'Currently Active'}
+              </span>
             </div>
-            <span className="font-semibold text-slate-400 text-sm tracking-wide uppercase">
-              {discordPresence?.activityType === 'playing' ? 'Currently Playing' : 'Currently Active'}
-            </span>
+            <span className="text-xs font-semibold text-slate-500 uppercase tracking-widest group-hover/discord:text-emerald-500 transition-colors">Discord</span>
           </div>
           <p className="font-medium text-white text-lg leading-snug">
             {discordPresence?.activity || 'Researching AI systems'}
@@ -109,8 +112,8 @@ export default async function Home() {
           <Link href="https://blog.envoyou.com" target="_blank" className="absolute inset-0 z-20" />
           <div className="flex items-center justify-between mb-6 relative z-10">
             <div className="flex items-center gap-2">
-              <div className="w-8 h-8 rounded-full bg-primary-500/20 flex items-center justify-center">
-                <Code2 className="w-4 h-4 text-primary-400" />
+              <div className="w-8 h-8 rounded-md bg-white/5 border border-white/10 flex items-center justify-center overflow-hidden">
+                <Image src="/brand/logo.svg" alt="Envoyou Logo" width={20} height={20} className="object-contain" />
               </div>
               <h2 className="font-bold text-white text-lg">Envoyou Blog</h2>
             </div>
