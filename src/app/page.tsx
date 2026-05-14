@@ -1,32 +1,24 @@
 import BentoCard from '@/components/BentoCard';
-import { ArrowUpRight, MapPin, Code2 } from 'lucide-react';
+import { ArrowUpRight, MapPin, Code2, GitCommit, Activity, Target } from 'lucide-react';
 import { LinkedinIcon, YoutubeIcon } from '@/components/icons';
 import Image from 'next/image';
 import Link from 'next/link';
-
-// Simple fetch for blog posts (runs on server, bypasses CORS)
-async function getLatestPosts() {
-  try {
-    const API_URL = process.env.NEXT_PUBLIC_API_URL || 'https://api.envoyou.com/api';
-    const res = await fetch(`${API_URL}/posts?limit=2`, {
-      next: { revalidate: 3600 }
-    });
-    if (!res.ok) throw new Error('Failed to fetch posts');
-    const json = await res.json();
-    return json.data || [];
-  } catch (error) {
-    console.error('Error fetching posts:', error);
-    return [];
-  }
-}
+import { getLatestGithubActivity } from '@/lib/services/github';
+import { getDiscordPresence } from '@/lib/services/lanyard';
+import { getLatestPosts } from '@/lib/services/blog';
 
 export default async function Home() {
-  const posts = await getLatestPosts();
+  // Aggregate all API requests in parallel!
+  const [githubActivity, discordPresence, posts] = await Promise.all([
+    getLatestGithubActivity(),
+    getDiscordPresence(),
+    getLatestPosts(),
+  ]);
 
   return (
     <main className="min-h-screen p-4 md:p-8 lg:p-12 max-w-7xl mx-auto flex items-center justify-center">
       <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6 w-full auto-rows-[200px]">
-
+        
         {/* Profile Card */}
         <BentoCard className="md:col-span-2 md:row-span-2 p-8 flex flex-col justify-end" delay={0.1}>
           <div className="absolute top-8 right-8">
@@ -37,10 +29,10 @@ export default async function Home() {
           </div>
           <div className="mb-6">
             <div className="w-20 h-20 md:w-24 md:h-24 rounded-full bg-gradient-to-tr from-primary-500 to-purple-500 p-1 mb-4 relative overflow-hidden">
-              <Image
-                src="/me/husniKusumaEnvoyou.webp"
-                alt="Husni Kusuma"
-                fill
+              <Image 
+                src="/me/husniKusumaEnvoyou.webp" 
+                alt="Husni Kusuma" 
+                fill 
                 sizes="(max-width: 768px) 100vw, 33vw"
                 className="object-cover rounded-full p-1 bg-slate-900"
               />
@@ -53,20 +45,59 @@ export default async function Home() {
           </p>
         </BentoCard>
 
-        {/* Map Card */}
-        <BentoCard className="p-0 relative" delay={0.2} glowColor="rgba(16, 185, 129, 0.15)">
-          <div className="absolute inset-0 bg-slate-900/50 backdrop-blur-[2px] z-10 flex items-center justify-center pointer-events-none">
-            <div className="flex items-center gap-2 px-4 py-2 bg-black/50 backdrop-blur-md rounded-full border border-white/10">
-              <MapPin className="w-4 h-4 text-emerald-400" />
-              <span className="text-sm font-medium text-emerald-50">Banyuwangi, ID</span>
-            </div>
+        {/* Current Focus Card */}
+        <BentoCard className="p-6 flex flex-col justify-center relative overflow-hidden" delay={0.2} glowColor="rgba(234, 179, 8, 0.15)">
+          <div className="flex items-center gap-2 mb-3">
+            <Target className="w-5 h-5 text-yellow-500" />
+            <span className="font-semibold text-yellow-500/90 text-sm tracking-wide uppercase">Current Focus</span>
           </div>
-          {/* A simple decorative map background (replace with an actual map component if desired) */}
-          <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1524661135-423995f22d0b?q=80&w=800&auto=format&fit=crop')] bg-cover bg-center opacity-30 grayscale" />
+          <p className="font-medium text-white text-lg leading-snug">
+            Building Envoyou Ecosystem
+          </p>
+          <div className="absolute -right-4 -bottom-4 opacity-5">
+            <Target className="w-32 h-32" />
+          </div>
+        </BentoCard>
+
+        {/* Discord / Steam Presence Card */}
+        <BentoCard className="p-6 flex flex-col justify-center relative overflow-hidden" delay={0.3} glowColor="rgba(34, 197, 94, 0.15)">
+          <div className="flex items-center gap-2 mb-3">
+            <div className="relative flex h-2 w-2">
+              {discordPresence?.status === 'online' && <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>}
+              <span className={`relative inline-flex rounded-full h-2 w-2 ${discordPresence?.status === 'online' ? 'bg-emerald-500' : 'bg-slate-500'}`}></span>
+            </div>
+            <span className="font-semibold text-slate-400 text-sm tracking-wide uppercase">
+              {discordPresence?.activityType === 'playing' ? 'Currently Playing' : 'Currently Active'}
+            </span>
+          </div>
+          <p className="font-medium text-white text-lg leading-snug">
+            {discordPresence?.activity || 'Researching AI systems'}
+          </p>
+          <div className="absolute -right-4 -bottom-4 opacity-5">
+            <Activity className="w-32 h-32" />
+          </div>
+        </BentoCard>
+
+        {/* GitHub Activity Card */}
+        <BentoCard className="p-6 flex flex-col justify-center relative overflow-hidden group/github cursor-pointer" delay={0.4} glowColor="rgba(255, 255, 255, 0.15)">
+          <Link href="https://github.com/hk-dev13" target="_blank" className="absolute inset-0 z-20" />
+          <div className="flex items-center gap-2 mb-3">
+            <GitCommit className="w-5 h-5 text-slate-300 group-hover/github:text-white transition-colors" />
+            <span className="font-semibold text-slate-400 text-sm tracking-wide uppercase group-hover/github:text-slate-300 transition-colors">Latest Activity</span>
+          </div>
+          <div className="flex flex-col">
+            <span className="text-slate-300 font-medium text-lg leading-snug truncate">
+              {githubActivity?.action || 'Updated'} <span className="text-white">{githubActivity?.repo || 'envoyou-hub'}</span>
+            </span>
+            <span className="text-slate-500 text-sm mt-1">
+              {githubActivity?.timeAgo || 'Recently'}
+            </span>
+          </div>
+          <ArrowUpRight className="absolute top-4 right-4 w-5 h-5 text-slate-600 group-hover/github:text-white group-hover/github:translate-x-1 group-hover/github:-translate-y-1 transition-all" />
         </BentoCard>
 
         {/* Socials: LinkedIn */}
-        <BentoCard className="p-6 flex flex-col items-center justify-center group/link cursor-pointer" delay={0.3} glowColor="rgba(10, 102, 194, 0.2)">
+        <BentoCard className="p-6 flex flex-col items-center justify-center group/link cursor-pointer" delay={0.5} glowColor="rgba(10, 102, 194, 0.2)">
           <Link href="https://www.linkedin.com/in/husni-kusuma" target="_blank" className="absolute inset-0 z-20" />
           <LinkedinIcon className="w-10 h-10 text-slate-400 group-hover/link:text-[#0A66C2] transition-colors mb-4" />
           <span className="font-semibold text-slate-300">LinkedIn</span>
@@ -74,7 +105,7 @@ export default async function Home() {
         </BentoCard>
 
         {/* Blog Highlight Card */}
-        <BentoCard className="md:col-span-2 md:row-span-2 p-6 flex flex-col relative overflow-hidden group/blog" delay={0.4} glowColor="rgba(59, 130, 246, 0.15)">
+        <BentoCard className="md:col-span-2 md:row-span-2 p-6 flex flex-col relative overflow-hidden group/blog" delay={0.6} glowColor="rgba(59, 130, 246, 0.15)">
           <Link href="https://blog.envoyou.com" target="_blank" className="absolute inset-0 z-20" />
           <div className="flex items-center justify-between mb-6 relative z-10">
             <div className="flex items-center gap-2">
@@ -85,7 +116,7 @@ export default async function Home() {
             </div>
             <ArrowUpRight className="w-5 h-5 text-slate-500 group-hover/blog:text-white transition-colors" />
           </div>
-
+          
           <div className="flex flex-col gap-4 relative z-10 flex-1 justify-center">
             {posts.length > 0 ? (
               posts.map((post: any) => (
@@ -98,16 +129,16 @@ export default async function Home() {
               <div className="text-slate-500 text-center text-sm">No recent posts</div>
             )}
           </div>
-
+          
           {/* Subtle gradient background for blog card */}
           <div className="absolute -bottom-24 -right-24 w-64 h-64 bg-primary-600/20 blur-3xl rounded-full pointer-events-none" />
         </BentoCard>
 
         {/* YouTube Gaming */}
-        <BentoCard className="md:col-span-2 md:row-span-2 p-0 overflow-hidden group/yt cursor-pointer relative" delay={0.5} glowColor="rgba(255, 0, 0, 0.2)">
+        <BentoCard className="md:col-span-2 md:row-span-2 p-0 overflow-hidden group/yt cursor-pointer relative" delay={0.7} glowColor="rgba(255, 0, 0, 0.2)">
           <Link href="https://youtube.com" target="_blank" className="absolute inset-0 z-20" />
           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent z-10" />
-          <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=1000&auto=format&fit=crop')] bg-cover bg-center group-hover/yt:scale-105 transition-transform duration-700" />
+          <div className="absolute inset-0 bg-[url('https://cdn.envoyou.com/brand/youtube.jpeg')] bg-cover bg-center group-hover/yt:scale-105 transition-transform duration-700" />
           <div className="absolute bottom-6 left-6 z-10">
             <div className="flex items-center gap-2 mb-2">
               <YoutubeIcon className="w-6 h-6 text-red-500" />
