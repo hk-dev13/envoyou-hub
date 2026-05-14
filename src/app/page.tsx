@@ -18,7 +18,7 @@ export default async function Home() {
   return (
     <main className="min-h-screen p-4 md:p-8 lg:p-12 max-w-7xl mx-auto flex items-center justify-center">
       <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6 w-full auto-rows-[200px]">
-        
+
         {/* Profile Card */}
         <BentoCard className="md:col-span-2 md:row-span-2 p-8 flex flex-col justify-end" delay={0.1}>
           <div className="absolute top-8 right-8">
@@ -29,10 +29,10 @@ export default async function Home() {
           </div>
           <div className="mb-6">
             <div className="w-20 h-20 md:w-24 md:h-24 rounded-full bg-gradient-to-tr from-primary-500 to-purple-500 p-1 mb-4 relative overflow-hidden">
-              <Image 
-                src="/me/husniKusumaEnvoyou.webp" 
-                alt="Husni Kusuma" 
-                fill 
+              <Image
+                src="/me/husniKusumaEnvoyou.webp"
+                alt="Husni Kusuma"
+                fill
                 sizes="(max-width: 768px) 100vw, 33vw"
                 className="object-cover rounded-full p-1 bg-slate-900"
               />
@@ -119,7 +119,7 @@ export default async function Home() {
             </div>
             <ArrowUpRight className="w-5 h-5 text-slate-500 group-hover/blog:text-white transition-colors" />
           </div>
-          
+
           <div className="flex flex-col gap-4 relative z-10 flex-1 justify-center">
             {posts.length > 0 ? (
               posts.map((post: any) => (
@@ -132,14 +132,14 @@ export default async function Home() {
               <div className="text-slate-500 text-center text-sm">No recent posts</div>
             )}
           </div>
-          
+
           {/* Subtle gradient background for blog card */}
           <div className="absolute -bottom-24 -right-24 w-64 h-64 bg-primary-600/20 blur-3xl rounded-full pointer-events-none" />
         </BentoCard>
 
         {/* YouTube Gaming */}
         <BentoCard className="md:col-span-2 md:row-span-2 p-0 overflow-hidden group/yt cursor-pointer relative" delay={0.7} glowColor="rgba(255, 0, 0, 0.2)">
-          <Link href="https://youtube.com" target="_blank" className="absolute inset-0 z-20" />
+          <Link href="https://www.youtube.com/@digitalforfuturee" target="_blank" className="absolute inset-0 z-20" />
           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent z-10" />
           <div className="absolute inset-0 bg-[url('https://cdn.envoyou.com/brand/youtube.jpeg')] bg-cover bg-center group-hover/yt:scale-105 transition-transform duration-700" />
           <div className="absolute bottom-6 left-6 z-10">
