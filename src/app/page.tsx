@@ -36,10 +36,13 @@ export default async function Home() {
             </span>
           </div>
           <div className="mb-6">
-            <div className="w-20 h-20 md:w-24 md:h-24 rounded-full bg-gradient-to-tr from-primary-500 to-purple-500 p-1 mb-4">
-              <div className="w-full h-full rounded-full bg-slate-900 flex items-center justify-center text-3xl font-bold">
-                HK
-              </div>
+            <div className="w-20 h-20 md:w-24 md:h-24 rounded-full bg-gradient-to-tr from-primary-500 to-purple-500 p-1 mb-4 relative overflow-hidden">
+              <Image 
+                src="/me/husniKusumaEnvoyou.webp" 
+                alt="Husni Kusuma" 
+                fill 
+                className="object-cover rounded-full p-1 bg-slate-900"
+              />
             </div>
             <h1 className="text-3xl md:text-4xl font-bold text-white mb-2">Husni Kusuma</h1>
             <p className="text-slate-400 text-lg">Fullstack Developer & Data Analyst</p>
