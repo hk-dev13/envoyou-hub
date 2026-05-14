@@ -1,6 +1,6 @@
 import BentoCard from '@/components/BentoCard';
-import { ArrowUpRight, MapPin, GitCommit, Activity, Target } from 'lucide-react';
-import { LinkedinIcon, YoutubeIcon } from '@/components/icons';
+import { ArrowUpRight, MapPin, GitCommit, Activity, Target, Mail } from 'lucide-react';
+import { LinkedinIcon, YoutubeIcon, InstagramIcon } from '@/components/icons';
 import Image from 'next/image';
 import Link from 'next/link';
 import { getLatestGithubActivity } from '@/lib/services/github';
@@ -99,12 +99,26 @@ export default async function Home() {
           <ArrowUpRight className="absolute top-4 right-4 w-5 h-5 text-slate-600 group-hover/github:text-white group-hover/github:translate-x-1 group-hover/github:-translate-y-1 transition-all" />
         </BentoCard>
 
-        {/* Socials: LinkedIn */}
-        <BentoCard className="p-6 flex flex-col items-center justify-center group/link cursor-pointer" delay={0.5} glowColor="rgba(10, 102, 194, 0.2)">
-          <Link href="https://www.linkedin.com/in/husni-kusuma" target="_blank" className="absolute inset-0 z-20" />
-          <LinkedinIcon className="w-10 h-10 text-slate-400 group-hover/link:text-[#0A66C2] transition-colors mb-4" />
-          <span className="font-semibold text-slate-300">LinkedIn</span>
-          <ArrowUpRight className="absolute top-4 right-4 w-5 h-5 text-slate-600 group-hover/link:text-white group-hover/link:translate-x-1 group-hover/link:-translate-y-1 transition-all" />
+        {/* Connect / Socials */}
+        <BentoCard className="p-6 flex flex-col justify-center relative overflow-hidden" delay={0.5} glowColor="rgba(59, 130, 246, 0.15)">
+          <div className="flex items-center gap-2 mb-4">
+            <Mail className="w-5 h-5 text-blue-400" />
+            <span className="font-semibold text-slate-300 text-sm tracking-wide uppercase">Let's Connect</span>
+          </div>
+          <div className="flex gap-4 items-center">
+            <Link href="https://www.linkedin.com/in/husni-kusuma" target="_blank" className="w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-[#0A66C2]/20 hover:border-[#0A66C2]/50 hover:text-[#0A66C2] text-slate-400 transition-all relative z-20" aria-label="LinkedIn">
+              <LinkedinIcon className="w-5 h-5" />
+            </Link>
+            <Link href="https://www.instagram.com/bosanid13" target="_blank" className="w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-pink-500/20 hover:border-pink-500/50 hover:text-pink-500 text-slate-400 transition-all relative z-20" aria-label="Instagram">
+              <InstagramIcon className="w-5 h-5" />
+            </Link>
+            <Link href="mailto:husnikusuma@envoyou.com" className="w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-emerald-500/20 hover:border-emerald-500/50 hover:text-emerald-500 text-slate-400 transition-all relative z-20" aria-label="Email">
+              <Mail className="w-5 h-5" />
+            </Link>
+          </div>
+          <div className="absolute -right-6 -bottom-6 opacity-5 pointer-events-none">
+            <Mail className="w-32 h-32" />
+          </div>
         </BentoCard>
 
         {/* Blog Highlight Card */}
