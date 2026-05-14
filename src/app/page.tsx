@@ -7,8 +7,8 @@ import Link from 'next/link';
 // Simple fetch for blog posts (runs on server, bypasses CORS)
 async function getLatestPosts() {
   try {
-    // In production this would be https://blog.envoyou.com/api/posts
-    const res = await fetch('https://blog.envoyou.com/api/posts?limit=2', { 
+    const API_URL = process.env.NEXT_PUBLIC_API_URL || 'https://api.envoyou.com/api';
+    const res = await fetch(`${API_URL}/posts?limit=2`, { 
       next: { revalidate: 3600 } 
     });
     if (!res.ok) throw new Error('Failed to fetch posts');
@@ -41,6 +41,7 @@ export default async function Home() {
                 src="/me/husniKusumaEnvoyou.webp" 
                 alt="Husni Kusuma" 
                 fill 
+                sizes="(max-width: 768px) 100vw, 33vw"
                 className="object-cover rounded-full p-1 bg-slate-900"
               />
             </div>
