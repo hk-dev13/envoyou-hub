@@ -13,8 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Envoyou Hub | Husni Kusuma",
-  description: "The digital ecosystem of Envoyou. Discover my blog, projects, and latest activities.",
+  title: "Envoyou — Technology, AI, and Digital Insight Platform",
+  description: "Envoyou explores technology, artificial intelligence, digital strategy, and future systems through insights, research, and engineering.",
 };
 
 export default function RootLayout({
@@ -38,12 +38,11 @@ export default function RootLayout({
                   "@type": "Person",
                   "@id": "https://envoyou.com/#person",
                   "name": "Husni Kusuma",
-                  "jobTitle": "Fullstack Developer & Data Analyst",
+                  "jobTitle": "Software Engineer & Digital Builder",
                   "url": "https://envoyou.com",
                   "sameAs": [
-                    "https://linkedin.com/in/husnikusuma",
-                    "https://github.com/hk-dev13",
-                    "https://kaggle.com"
+                    "https://www.linkedin.com/in/husni-kusuma",
+                    "https://github.com/hk-dev13"
                   ]
                 },
                 {
@@ -57,7 +56,6 @@ export default function RootLayout({
                   },
                   "sameAs": [
                     "https://blog.envoyou.com",
-                    "https://store.envoyou.com",
                     "https://youtube.com"
                   ],
                   "description": "Technology, AI, and digital insight platform."
