@@ -42,6 +42,9 @@ export default async function Home() {
           </div>
           <p className="text-slate-500 max-w-md">
             I design and build full-stack applications, create intelligent systems with AI, and craft digital experiences that make a difference.
+            <Link href="https://blog.envoyou.com/about" target="_blank" className="text-slate-400 hover:text-[#1D80C3] hover:underline ml-2 font-medium transition-all">
+              Baca selengkapnya...
+            </Link>
           </p>
         </BentoCard>
 
