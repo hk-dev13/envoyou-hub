@@ -3,25 +3,31 @@
 @theme {
   --color-background: #050505;
   --color-foreground: #ededed;
-  
+
   --color-primary-50: #eff6ff;
   --color-primary-100: #dbeafe;
   --color-primary-500: #3b82f6;
   --color-primary-600: #2563eb;
   --color-primary-900: #1e3a8a;
-  
+
   /* Glassmorphism borders and backgrounds */
   --color-glass-bg: rgba(255, 255, 255, 0.03);
   --color-glass-border: rgba(255, 255, 255, 0.08);
   --color-glass-bg-hover: rgba(255, 255, 255, 0.06);
   --color-glass-border-hover: rgba(255, 255, 255, 0.15);
-  
-  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+
   --font-mono: var(--font-geist-mono), ui-monospace, SFMono-Regular, monospace;
 
-  @keyframes spin-slow {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
+  --animate-spin-slow: spin-slow 3s linear infinite;
+}
+
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
   }
 }
 
@@ -36,7 +42,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   /* Add a subtle radial gradient mesh background */
-  background-image: 
+  background-image:
     radial-gradient(circle at 15% 50%, rgba(37, 99, 235, 0.08), transparent 25%),
     radial-gradient(circle at 85% 30%, rgba(16, 185, 129, 0.08), transparent 25%);
   background-attachment: fixed;
@@ -47,13 +53,16 @@ body {
 ::-webkit-scrollbar {
   width: 8px;
 }
+
 ::-webkit-scrollbar-track {
   background: transparent;
 }
+
 ::-webkit-scrollbar-thumb {
   background: rgba(255, 255, 255, 0.1);
   border-radius: 4px;
 }
+
 ::-webkit-scrollbar-thumb:hover {
   background: rgba(255, 255, 255, 0.2);
 }
@@ -66,10 +75,9 @@ body {
     -webkit-backdrop-filter: blur(16px);
     border-radius: 1.5rem;
   }
-  
+
   .glass-card:hover {
     background-color: var(--color-glass-bg-hover);
     border-color: var(--color-glass-border-hover);
   }
 }
-
