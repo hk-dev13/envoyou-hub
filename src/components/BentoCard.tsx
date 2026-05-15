@@ -39,15 +39,25 @@ export default function BentoCard({
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
+      whileHover={{ scale: 1.015 }} // Cukup definisikan target scale-nya saja di sini
       transition={{
-        duration: 0.5,
-        delay,
-        ease: [0.25, 0.1, 0.25, 1]
+        // 1. Animasi Load Awal: Terapkan delay HANYA pada opacity dan y
+        opacity: { duration: 0.5, delay, ease: [0.25, 0.1, 0.25, 1] },
+        y: { duration: 0.5, delay, ease: [0.25, 0.1, 0.25, 1] },
+
+        // 2. Animasi Scale (Hover & Un-hover): Gunakan spring tanpa delay
+        scale: { type: 'spring', stiffness: 300, damping: 20, delay: 0 }
       }}
       className={cn(
-        'group relative overflow-hidden glass-card transition-all duration-300',
+        'group relative overflow-hidden glass-card hover:z-20',
         className
       )}
+      // 3. Optimasi Rendering Hardware agar tidak patah/bergetar
+      style={{
+        willChange: 'transform, opacity',
+        backfaceVisibility: 'hidden',
+        WebkitFontSmoothing: 'antialiased'
+      }}
       onMouseMove={handleMouseMove}
     >
       {/* Hover glow effect */}
@@ -67,12 +77,12 @@ export default function BentoCard({
       {/* Border Beam Effect */}
       <div className="absolute inset-0 z-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500">
         <div className="absolute inset-0 rounded-[1.5rem] p-[1.5px] [mask-image:linear-gradient(white,white),linear-gradient(white,white)] [mask-clip:content-box,padding-box] [mask-composite:exclude] bg-transparent overflow-hidden">
-          <div 
+          <div
             className="absolute inset-[-150%] bg-[conic-gradient(from_0deg,transparent_0,transparent_70%,#3b82f6_85%,#10b981_95%,#3b82f6_100%)] animate-spin-slow"
           />
         </div>
       </div>
-      
+
       <div className="relative z-10 h-full w-full">
         {children}
       </div>

@@ -43,7 +43,7 @@ export default async function Home() {
           <p className="text-slate-500 max-w-md">
             I design and build full-stack applications, create intelligent systems with AI, and craft digital experiences that make a difference.
             <Link href="https://blog.envoyou.com/about" target="_blank" className="text-slate-400 hover:text-[#1D80C3] hover:underline ml-2 font-medium transition-all">
-              Baca selengkapnya...
+              Read more...
             </Link>
           </p>
         </BentoCard>
@@ -74,7 +74,7 @@ export default async function Home() {
                 {discordPresence?.activityType === 'playing' ? 'Currently Playing' : 'Currently Active'}
               </span>
             </div>
-            <span className="text-xs font-semibold text-slate-500 uppercase tracking-widest group-hover/discord:text-emerald-500 transition-colors">Discord</span>
+            <span className="text-xs font-semibold text-slate-500 uppercase tracking-widest group-hover/discord:text-[#5865F2] transition-colors">Discord</span>
           </div>
           <p className="font-medium text-white text-lg leading-snug">
             {discordPresence?.activity || 'Researching AI systems'}
@@ -91,6 +91,7 @@ export default async function Home() {
             <GitCommit className="w-5 h-5 text-slate-300 group-hover/github:text-white transition-colors" />
             <span className="font-semibold text-slate-400 text-sm tracking-wide uppercase group-hover/github:text-slate-300 transition-colors">Latest Activity</span>
           </div>
+          <span className="text-xs font-semibold text-slate-500 uppercase tracking-widest group-hover/github:text-slate-300 transition-colors">GitHub Commits</span>
           <div className="flex flex-col">
             <span className="text-slate-300 font-medium text-lg leading-snug truncate">
               {githubActivity?.action || 'Updated'} <span className="text-white">{githubActivity?.repo || 'envoyou-hub'}</span>
@@ -110,16 +111,16 @@ export default async function Home() {
               <span className="font-semibold text-slate-300 text-sm tracking-wide uppercase">Let's Connect</span>
             </div>
             <div className="flex-1 flex gap-4 items-center justify-center">
-              <Link href="https://www.linkedin.com/in/husni-kusuma" target="_blank" className="w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-[#0A66C2]/20 hover:border-[#0A66C2]/50 hover:text-[#0A66C2] text-slate-400 transition-all relative z-20" aria-label="LinkedIn">
+              <Link href="https://www.linkedin.com/in/husni-kusuma" target="_blank" className="w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:border-[#0A66C2]/50 hover:text-[#0A66C2] text-slate-400 transition-all relative z-20" aria-label="LinkedIn">
                 <LinkedinIcon className="w-5 h-5" />
               </Link>
-              <Link href="https://www.instagram.com/bosanid13" target="_blank" className="w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-pink-500/20 hover:border-pink-500/50 hover:text-pink-500 text-slate-400 transition-all relative z-20" aria-label="Instagram">
+              <Link href="https://www.instagram.com/bosanid13" target="_blank" className="w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:border-pink-500/50 hover:text-pink-500 text-slate-400 transition-all relative z-20" aria-label="Instagram">
                 <InstagramIcon className="w-5 h-5" />
               </Link>
-              <Link href="https://discord.gg/yX2zp2qk8T" target="_blank" className="w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-[#5865F2]/20 hover:border-[#5865F2]/50 hover:text-[#5865F2] text-slate-400 transition-all relative z-20" aria-label="Discord">
+              <Link href="https://discord.gg/yX2zp2qk8T" target="_blank" className="w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:border-[#5865F2]/50 hover:text-[#5865F2] text-slate-400 transition-all relative z-20" aria-label="Discord">
                 <DiscordIcon className="w-5 h-5" />
               </Link>
-              <Link href="mailto:husnikusuma@envoyou.com" className="w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-emerald-500/20 hover:border-emerald-500/50 hover:text-emerald-500 text-slate-400 transition-all relative z-20" aria-label="Email">
+              <Link href="mailto:husnikusuma@envoyou.com" className="w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:border-emerald-500/50 hover:text-emerald-500 text-slate-400 transition-all relative z-20" aria-label="Email">
                 <Mail className="w-5 h-5" />
               </Link>
             </div>
@@ -137,9 +138,9 @@ export default async function Home() {
               <div className="w-8 h-8 rounded-md bg-white/5 border border-white/10 flex items-center justify-center overflow-hidden">
                 <Image src="/brand/logo.svg" alt="Envoyou Logo" width={20} height={20} className="object-contain" />
               </div>
-              <h2 className="font-bold text-white text-lg">Envoyou Blog</h2>
+              <h2 className="font-bold text-white group-hover:text-[#1D80C3] transition-all duration-300 text-lg">Envoyou Blog</h2>
             </div>
-            <ArrowUpRight className="w-5 h-5 text-slate-500 group-hover/blog:text-white transition-colors" />
+            <ArrowUpRight className="w-5 h-5 text-slate-500 group-hover/blog:text-white group-hover/blog:translate-x-1 group-hover/blog:-translate-y-1 transition-colors" />
           </div>
 
           <div className="flex flex-col gap-4 relative z-10 flex-1 justify-center">
