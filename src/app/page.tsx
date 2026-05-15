@@ -100,12 +100,12 @@ export default async function Home() {
         </BentoCard>
 
         {/* Connect / Socials */}
-        <BentoCard className="p-6 flex flex-col justify-center relative overflow-hidden" delay={0.5} glowColor="rgba(59, 130, 246, 0.15)">
+        <BentoCard className="p-6 flex flex-col justify-center items-center relative overflow-hidden text-center" delay={0.5} glowColor="rgba(59, 130, 246, 0.15)">
           <div className="flex items-center gap-2 mb-4">
             <Mail className="w-5 h-5 text-blue-400" />
             <span className="font-semibold text-slate-300 text-sm tracking-wide uppercase">Let's Connect</span>
           </div>
-          <div className="flex gap-4 items-center">
+          <div className="flex gap-4 items-center justify-center">
             <Link href="https://www.linkedin.com/in/husni-kusuma" target="_blank" className="w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-[#0A66C2]/20 hover:border-[#0A66C2]/50 hover:text-[#0A66C2] text-slate-400 transition-all relative z-20" aria-label="LinkedIn">
               <LinkedinIcon className="w-5 h-5" />
             </Link>
