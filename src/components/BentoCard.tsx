@@ -16,9 +16,9 @@ interface BentoCardProps {
   glowColor?: string;
 }
 
-export default function BentoCard({ 
-  children, 
-  className, 
+export default function BentoCard({
+  children,
+  className,
   delay = 0,
   glowColor = 'rgba(255, 255, 255, 0.15)'
 }: BentoCardProps) {
@@ -39,10 +39,10 @@ export default function BentoCard({
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ 
-        duration: 0.5, 
-        delay, 
-        ease: [0.25, 0.1, 0.25, 1] 
+      transition={{
+        duration: 0.5,
+        delay,
+        ease: [0.25, 0.1, 0.25, 1]
       }}
       className={cn(
         'group relative overflow-hidden glass-card transition-all duration-300',
@@ -63,7 +63,7 @@ export default function BentoCard({
           `,
         }}
       />
-      
+
       <div className="relative z-10 h-full w-full">
         {children}
       </div>
