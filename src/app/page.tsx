@@ -36,7 +36,7 @@ export default async function Home() {
           <div className="mb-6">
             <div className="w-20 h-20 md:w-24 md:h-24 rounded-full bg-gradient-to-tr from-[#1D80C3] to-[#2563eb] p-1 mb-4 relative overflow-hidden">
               <Image
-                src="/me/husniKusumaEnvoyou.webp"
+                src="me/husniKusumaEnvoyou.webp"
                 alt="Husni Kusuma"
                 fill
                 sizes="(max-width: 768px) 100vw, 33vw"
@@ -107,7 +107,7 @@ export default async function Home() {
             <div className="relative z-10 p-8 md:p-10 flex flex-col h-full">
               <div className="flex items-center gap-3 mb-6">
                 <div className="w-10 h-10 rounded-xl bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center overflow-hidden shadow-2xl">
-                  <Image src="/brand/Logo-500.svg" alt="Envoyou Logo" width={24} height={24} className="object-contain" />
+                  <Image src="/brand/logo-500.svg" alt="Envoyou Logo" width={24} height={24} className="object-contain" />
                 </div>
                 <div>
                   <h2 className="font-bold text-white text-xl tracking-tight">Envoyou Blog</h2>
