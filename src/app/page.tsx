@@ -22,7 +22,7 @@ export default async function Home() {
 
         {/* 1. Profile Card (Priority 2) - 2x2 */}
         <BentoCard
-          className="md:col-span-2 md:row-span-2 p-8 flex flex-col justify-end"
+          className="row-span-2 md:col-span-2 md:row-span-2 p-6 md:p-8 flex flex-col justify-end"
           delay={0.1}
           glowColor="rgba(29, 128, 195, 0.15)"
         >
@@ -80,18 +80,18 @@ export default async function Home() {
 
         {/* 2. Blog Card (Priority 1) - 2x3 */}
         <BentoCard
-          className="md:col-span-2 md:row-span-3 p-0 flex flex-col relative overflow-hidden group/blog"
+          className="row-span-2 md:col-span-2 md:row-span-3 p-0 flex flex-col relative overflow-hidden group/blog"
           delay={0.2}
           glowColor="rgba(29, 128, 195, 0.2)"
         >
           <Link href="https://blog.envoyou.com" target="_blank" className="absolute inset-0 z-20" />
-          
+
           <div className="relative h-full flex flex-col">
             {/* Background & Overlay */}
             <div className="absolute inset-0 z-0">
               {posts[0]?.cover_image ? (
-                <Image 
-                  src={posts[0].cover_image} 
+                <Image
+                  src={posts[0].cover_image}
                   alt={posts[0].title}
                   fill
                   priority
@@ -127,13 +127,13 @@ export default async function Home() {
                     <p className="text-slate-400 text-base md:text-lg line-clamp-3 leading-relaxed max-w-xl">
                       {posts[0].excerpt}
                     </p>
-                    
+
                     <div className="pt-6 flex items-center justify-between border-t border-white/10">
                       <div className="flex items-center gap-2 text-slate-300 font-medium group-hover/blog:text-white transition-colors">
                         <span>Read full article</span>
                         <ArrowUpRight className="w-5 h-5 group-hover/blog:translate-x-1 group-hover/blog:-translate-y-1 transition-transform" />
                       </div>
-                      
+
                       {posts.length > 1 && (
                         <div className="text-xs text-slate-500 font-medium italic">
                           + {posts.length - 1} more recent updates
@@ -164,7 +164,7 @@ export default async function Home() {
           <Link href="https://www.youtube.com/@digitalforfuturee" target="_blank" className="absolute inset-0 z-20" />
           <div className="absolute inset-0 bg-gradient-to-r from-black via-black/80 to-black/30 z-10" />
           <div className="absolute inset-0 bg-[url('https://cdn.envoyou.com/brand/youtube.jpeg')] bg-cover bg-center group-hover/yt:scale-105 transition-transform duration-700 opacity-40" />
-          
+
           <div className="absolute inset-y-0 left-8 z-10 flex flex-col justify-center max-w-[60%]">
             <div className="flex items-center gap-2 mb-1">
               <YoutubeIcon className="w-5 h-5 text-[#1D80C3]" />
@@ -172,7 +172,7 @@ export default async function Home() {
             </div>
             <p className="text-xs text-slate-400 line-clamp-1">Side personality, highlights & streams</p>
           </div>
-          
+
           <ArrowUpRight className="absolute top-4 right-4 w-5 h-5 text-slate-600 group-hover/yt:text-white group-hover/yt:translate-x-1 group-hover/yt:-translate-y-1 transition-all z-20" />
         </BentoCard>
 
@@ -227,37 +227,22 @@ export default async function Home() {
             <GitCommit className="w-4 h-4 text-slate-300" />
             <span className="text-[10px] font-bold text-slate-500 uppercase tracking-widest">GitHub</span>
           </div>
-          
-          <div className="flex flex-col gap-2.5 mt-0.5">
-            <div>
-              <p className="text-white font-medium text-sm leading-tight truncate">
-                {githubActivity?.action || 'Updated'} <span className="text-[#1D80C3]">{githubActivity?.repo || 'envoyou-hub'}</span>
-              </p>
-              <p className="text-[10px] text-slate-500 mt-0.5">{githubActivity?.timeAgo || 'Recently'}</p>
-            </div>
-            
-            <div className="flex items-center gap-3">
-              <div className="flex flex-col">
-                <span className="text-xs font-bold text-white">124</span>
-                <span className="text-[8px] text-slate-500 uppercase tracking-widest">Commits</span>
-              </div>
-              <div className="h-6 w-px bg-white/10" />
-              <div className="flex flex-col">
-                <span className="text-xs font-bold text-emerald-400 flex items-center gap-1">14 <span className="text-[8px] text-emerald-400/70">DAYS</span></span>
-                <span className="text-[8px] text-slate-500 uppercase tracking-widest">Streak</span>
-              </div>
-            </div>
 
-            <div className="w-full bg-black/40 rounded-md p-2 border border-white/5 font-mono text-[9px] text-emerald-400/80 leading-relaxed overflow-hidden relative">
-              <div className="flex gap-1.5 mb-1">
-                <div className="w-1.5 h-1.5 rounded-full bg-red-500/80"></div>
-                <div className="w-1.5 h-1.5 rounded-full bg-yellow-500/80"></div>
-                <div className="w-1.5 h-1.5 rounded-full bg-green-500/80"></div>
-              </div>
-              <p className="whitespace-nowrap overflow-hidden border-r-2 border-emerald-400/80 animate-[typing_3s_steps(30,end)_infinite,blink-caret_.75s_step-end_infinite]">
-                ~ git push -u origin main
-              </p>
-            </div>
+          <div className="flex flex-col gap-3 mt-2">
+            {githubActivity && githubActivity.length > 0 ? (
+              githubActivity.map((activity, idx) => (
+                <div key={idx} className="flex flex-col group/repo">
+                  <p className="text-white font-medium text-sm leading-tight truncate flex items-center gap-1.5">
+                    <span className="text-[#1D80C3] opacity-70 group-hover/repo:opacity-100 transition-opacity">→</span>
+                    <span className="text-slate-400">{activity.action}</span>
+                    <span className="text-white">{activity.repo}</span>
+                  </p>
+                  <span className="text-[9px] text-slate-500 ml-5 mt-0.5">{activity.timeAgo}</span>
+                </div>
+              ))
+            ) : (
+              <p className="text-xs text-slate-500">No recent activity.</p>
+            )}
           </div>
         </BentoCard>
 

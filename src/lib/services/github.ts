@@ -6,7 +6,7 @@ export interface GithubActivity {
   timeAgo: string;
 }
 
-export async function getLatestGithubActivity(): Promise<GithubActivity | null> {
+export async function getLatestGithubActivity(): Promise<GithubActivity[]> {
   try {
     const res = await fetch('https://api.github.com/users/hk-dev13/events/public', {
       next: { revalidate: 300 }, // 5 minutes
@@ -14,28 +14,27 @@ export async function getLatestGithubActivity(): Promise<GithubActivity | null> 
 
     if (!res.ok) {
       console.warn('Failed to fetch GitHub activity');
-      return null;
+      return [];
     }
 
     const events = await res.json();
-    if (!events || events.length === 0) return null;
+    if (!events || events.length === 0) return [];
 
-    // Filter to important events or just get the very latest
-    const latestEvent = events[0];
-    
-    let action = 'Updated';
-    if (latestEvent.type === 'PushEvent') action = 'Pushed to';
-    else if (latestEvent.type === 'CreateEvent') action = 'Created';
-    else if (latestEvent.type === 'WatchEvent') action = 'Starred';
-    else if (latestEvent.type === 'PullRequestEvent') action = 'Opened PR in';
+    return events.slice(0, 3).map((event: any) => {
+      let action = 'updated';
+      if (event.type === 'PushEvent') action = 'pushed';
+      else if (event.type === 'CreateEvent') action = 'created';
+      else if (event.type === 'WatchEvent') action = 'starred';
+      else if (event.type === 'PullRequestEvent') action = 'opened PR in';
 
-    return {
-      repo: latestEvent.repo.name.replace('hk-dev13/', ''),
-      action,
-      timeAgo: formatDistanceToNow(new Date(latestEvent.created_at), { addSuffix: true }),
-    };
+      return {
+        repo: event.repo.name.replace('hk-dev13/', ''),
+        action,
+        timeAgo: formatDistanceToNow(new Date(event.created_at), { addSuffix: true }),
+      };
+    });
   } catch (error) {
     console.error('Error fetching GitHub activity:', error);
-    return null;
+    return [];
   }
 }
