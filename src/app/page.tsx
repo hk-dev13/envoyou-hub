@@ -107,7 +107,7 @@ export default async function Home() {
             <div className="relative z-10 p-8 md:p-10 flex flex-col h-full">
               <div className="flex items-center gap-3 mb-6">
                 <div className="w-10 h-10 rounded-xl bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center overflow-hidden shadow-2xl">
-                  <Image src="/brand/logo.svg" alt="Envoyou Logo" width={24} height={24} className="object-contain" />
+                  <Image src="/brand/Logo-500.svg" alt="Envoyou Logo" width={24} height={24} className="object-contain" />
                 </div>
                 <div>
                   <h2 className="font-bold text-white text-xl tracking-tight">Envoyou Blog</h2>

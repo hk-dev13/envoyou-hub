@@ -52,7 +52,7 @@ export default function RootLayout({
                   "@id": "https://envoyou.com/#organization",
                   "name": "Envoyou",
                   "url": "https://envoyou.com",
-                  "logo": "https://envoyou.com/brand/logo.svg",
+                  "logo": "https://envoyou.com/brand/logo-500.svg",
                   "founder": {
                     "@id": "https://envoyou.com/#person"
                   },
