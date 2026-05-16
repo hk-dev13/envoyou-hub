@@ -3,6 +3,8 @@ export interface BlogPost {
   title: string;
   excerpt: string;
   slug: string;
+  cover_image?: string;
+  published_at?: string;
 }
 
 export async function getLatestPosts(): Promise<BlogPost[]> {

@@ -78,7 +78,7 @@ export default function BentoCard({
       <div className="absolute inset-0 z-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500">
         <div className="absolute inset-0 rounded-[1.5rem] p-[1.5px] [mask-image:linear-gradient(white,white),linear-gradient(white,white)] [mask-clip:content-box,padding-box] [mask-composite:exclude] bg-transparent overflow-hidden">
           <div
-            className="absolute inset-[-150%] bg-[conic-gradient(from_0deg,transparent_0,transparent_70%,#3b82f6_85%,#10b981_95%,#3b82f6_100%)] animate-spin-slow"
+            className="absolute inset-[-150%] bg-[conic-gradient(from_0deg,transparent_0,transparent_70%,#3b82f6_75%,#ffffff_85%,#ffffff_90%,#3b82f6_100%)] animate-spin-slow"
           />
         </div>
       </div>

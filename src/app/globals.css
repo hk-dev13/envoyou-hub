@@ -19,6 +19,7 @@
   --font-mono: var(--font-geist-mono), ui-monospace, SFMono-Regular, monospace;
 
   --animate-spin-slow: spin-slow 3s linear infinite;
+  --animate-shine: metallic-shine 3s linear infinite;
 }
 
 @keyframes spin-slow {
@@ -29,6 +30,26 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+@keyframes metallic-shine {
+  0% {
+    background-position: -200% 0;
+  }
+
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+
+@keyframes blink-caret {
+  from, to { border-color: transparent }
+  50% { border-color: rgba(52, 211, 153, 0.8) }
 }
 
 :root {
@@ -79,5 +100,16 @@ body {
   .glass-card:hover {
     background-color: var(--color-glass-bg-hover);
     border-color: var(--color-glass-border-hover);
+  }
+
+  .metallic-shine {
+    background: linear-gradient(110deg,
+        rgba(255, 255, 255, 0) 45%,
+        rgba(255, 255, 255, 1) 50%,
+        rgba(255, 255, 255, 0) 55%);
+    background-size: 200% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    transition: color 0.3s ease;
   }
 }
